@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Engine/Engine.h"
 #include "P_Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
@@ -18,5 +19,5 @@ class CPP_BATTLETANK_API APC_Tank : public APlayerController
 public:
 	
 	AP_Tank* GetControlledTank() const;
-	
+	void BeginPlay() override;
 };
