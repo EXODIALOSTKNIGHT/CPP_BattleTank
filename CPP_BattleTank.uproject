@@ -8,7 +8,10 @@
 		{
 			"Name": "CPP_BattleTank",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	]
 }
