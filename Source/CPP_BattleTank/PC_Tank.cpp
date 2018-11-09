@@ -3,7 +3,15 @@
 #include "PC_Tank.h"
 
 
-
+void APC_Tank::BeginPlay()
+{
+	Super::BeginPlay();
+	if (GetControlledTank())
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("%s"),*GetControlledTank()->GetName()));
+	}
+	
+}
 
 AP_Tank* APC_Tank::GetControlledTank() const
 {
