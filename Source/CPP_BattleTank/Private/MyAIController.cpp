@@ -41,6 +41,5 @@ void AMyAIController::AimTowardsPlayer()
 bool AMyAIController::GetSightRayLocation(FVector& OutHitLocation)
 {
 	
-	OutHitLocation = FVector(1);
 	return true;
 }

@@ -20,4 +20,18 @@ public:
 	
 	AP_Tank* GetControlledTank() const;
 	void BeginPlay() override;
+	AP_Tank* GetPlayerTank();
+	FVector StartLineTrace;
+	FVector EndLineTrace;
+	FCollisionObjectQueryParams CollisionObjectParam;
+
+
+	void Tick(float DeltaTime) override;
+	void AimTowardsPlayer();
+	bool GetSightRayLocation(FVector& OutHitLocation);
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5;
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.33;
 };
