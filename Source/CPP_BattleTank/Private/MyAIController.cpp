@@ -7,10 +7,15 @@ AP_Tank* AMyAIController::GetTankController() const
 	return Cast<AP_Tank>(GetPawn());
 }
 
+AP_Tank* AMyAIController::GetPlayerTank()
+{
+	return Cast<AP_Tank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+}
+
 void AMyAIController::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"),*GetTankController()->GetName()));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *GetPlayerTank()->GetName()));
 
 }
