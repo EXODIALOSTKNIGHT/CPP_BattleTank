@@ -21,7 +21,12 @@ private:
 
 	AP_Tank* GetTankController() const;
 	AP_Tank* GetPlayerTank();
+	FVector StartLineTrace;
+	FVector EndLineTrace;
+	FCollisionObjectQueryParams CollisionObjectParam;
+
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 	void AimTowardsPlayer();
+	bool GetSightRayLocation(FVector& OutHitLocation);
 };

@@ -24,10 +24,23 @@ void AMyAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsPlayer();
+
 }
 
 void AMyAIController::AimTowardsPlayer()
 {
-	//get world location through crosshair
+
+	FVector HitLocation;
+	if (GetSightRayLocation(HitLocation))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
+	}
 	
+}
+
+bool AMyAIController::GetSightRayLocation(FVector& OutHitLocation)
+{
+	
+	OutHitLocation = FVector(1);
+	return true;
 }
