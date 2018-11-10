@@ -19,3 +19,15 @@ void AMyAIController::BeginPlay()
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *GetPlayerTank()->GetName()));
 
 }
+
+void AMyAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimTowardsPlayer();
+}
+
+void AMyAIController::AimTowardsPlayer()
+{
+	//get world location through crosshair
+	
+}

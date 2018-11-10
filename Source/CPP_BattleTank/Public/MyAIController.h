@@ -22,4 +22,6 @@ private:
 	AP_Tank* GetTankController() const;
 	AP_Tank* GetPlayerTank();
 	void BeginPlay() override;
+	void Tick(float DeltaTime) override;
+	void AimTowardsPlayer();
 };
