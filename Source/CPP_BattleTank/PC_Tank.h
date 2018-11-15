@@ -29,6 +29,7 @@ public:
 	void Tick(float DeltaTime) override;
 	void AimTowardsPlayer();
 	bool GetSightRayLocation(FVector& OutHitLocation);
+	bool GetLookDirection(FVector2D ScreenLocation, FVector WorldDirection);
 
 	UPROPERTY(EditAnywhere)
 		float CrossHairXLocation = 0.5;

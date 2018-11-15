@@ -13,17 +13,19 @@ void APC_Tank::BeginPlay()
 	
 }
 
-AP_Tank* APC_Tank::GetControlledTank() const
-{
 
-	return Cast<AP_Tank>(GetPawn());
-}
 
 void APC_Tank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsPlayer();
 
+}
+
+AP_Tank* APC_Tank::GetControlledTank() const
+{
+
+	return Cast<AP_Tank>(GetPawn());
 }
 
 void APC_Tank::AimTowardsPlayer()
@@ -42,5 +44,27 @@ bool APC_Tank::GetSightRayLocation(FVector& OutHitLocation)
 	int32 ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
 	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
+
+	FVector CameraLocation;
+	FVector WorldDirection;
+
+	if (GetLookDirection(ScreenLocation,WorldDirection))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *WorldDirection.ToString()));
+	}
 	return true;
 }
+
+bool APC_Tank::GetLookDirection(FVector2D ScreenLocation,FVector WorldDirection)
+{
+	FVector CameraLocation;
+	return DeprojectScreenPositionToWorld
+	(
+		ScreenLocation.X,
+		ScreenLocation.Y,
+		CameraLocation,
+		WorldDirection
+	);
+}
+
+
