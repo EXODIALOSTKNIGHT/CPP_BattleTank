@@ -34,6 +34,7 @@ void APC_Tank::AimTowardsPlayer()
 	FVector HitLocation;
 	if (GetSightRayLocation(HitLocation))
 	{
+		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
 	}
 
 }
@@ -45,17 +46,16 @@ bool APC_Tank::GetSightRayLocation(FVector& OutHitLocation)
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
 	auto ScreenLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation);
 
-	FVector CameraLocation;
 	FVector WorldDirection;
-
 	if (GetLookDirection(ScreenLocation,WorldDirection))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *WorldDirection.ToString()));
+		GetLookVectorLocation(WorldDirection, OutHitLocation);
 	}
+
 	return true;
 }
 
-bool APC_Tank::GetLookDirection(FVector2D ScreenLocation,FVector WorldDirection)
+bool APC_Tank::GetLookDirection(FVector2D ScreenLocation,FVector& WorldDirection) const
 {
 	FVector CameraLocation;
 	return DeprojectScreenPositionToWorld
@@ -67,4 +67,27 @@ bool APC_Tank::GetLookDirection(FVector2D ScreenLocation,FVector WorldDirection)
 	);
 }
 
+bool APC_Tank::GetLookVectorLocation(FVector LookDirection,FVector& HitLocation) const
+{
+	FHitResult HitResult;
+	
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
+	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
+
+	if (GetWorld()->LineTraceSingleByChannel
+	(
+		HitResult,
+		StartLocation,
+		EndLocation,
+		ECollisionChannel::ECC_Visibility
+	))
+	{
+		DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, -1.f, 0, 10);
+		HitLocation = HitResult.Location;
+		return true;
+	}
+
+
+	return false;
+}
 

@@ -6,6 +6,8 @@
 #include "P_Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
+#include "DrawDebugHelpers.h"
 #include "PC_Tank.generated.h"
 
 /**
@@ -29,10 +31,13 @@ public:
 	void Tick(float DeltaTime) override;
 	void AimTowardsPlayer();
 	bool GetSightRayLocation(FVector& OutHitLocation);
-	bool GetLookDirection(FVector2D ScreenLocation, FVector WorldDirection);
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& WorldDirection)const;
+	bool GetLookVectorLocation(FVector LookDirection, FVector& HitLocation) const;
 
 	UPROPERTY(EditAnywhere)
 		float CrossHairXLocation = 0.5;
 	UPROPERTY(EditAnywhere)
 	float CrossHairYLocation = 0.33;
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 100000;
 };

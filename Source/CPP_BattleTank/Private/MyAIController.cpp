@@ -33,7 +33,7 @@ void AMyAIController::AimTowardsPlayer()
 	FVector HitLocation;
 	if (GetSightRayLocation(HitLocation))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
+		//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
 	}
 	
 }
