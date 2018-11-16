@@ -34,7 +34,7 @@ void APC_Tank::AimTowardsPlayer()
 	FVector HitLocation;
 	if (GetSightRayLocation(HitLocation))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
+		GetControlledTank()->AimAt(HitLocation);
 	}
 
 }

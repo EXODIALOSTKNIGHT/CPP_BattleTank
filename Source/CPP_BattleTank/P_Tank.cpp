@@ -18,6 +18,12 @@ void AP_Tank::BeginPlay()
 	
 }
 
+void AP_Tank::AimAt(FVector HitLocation)
+{
+	auto OurTankName = GetName();
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("%s is aiming at %s"),*OurTankName, *HitLocation.ToString()));
+}
+
 // Called every frame
 void AP_Tank::Tick(float DeltaTime)
 {

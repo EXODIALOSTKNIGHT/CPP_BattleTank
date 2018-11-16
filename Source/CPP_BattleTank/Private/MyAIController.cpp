@@ -20,26 +20,16 @@ void AMyAIController::BeginPlay()
 
 }
 
-void AMyAIController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	AimTowardsPlayer();
 
-}
-
-void AMyAIController::AimTowardsPlayer()
-{
-
-	FVector HitLocation;
-	if (GetSightRayLocation(HitLocation))
-	{
-		//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("%s"), *HitLocation.ToString()));
-	}
-	
-}
 
 bool AMyAIController::GetSightRayLocation(FVector& OutHitLocation)
 {
 	
 	return true;
+}
+
+void AMyAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	GetTankController()->AimAt(GetPlayerTank()->GetActorLocation());
 }

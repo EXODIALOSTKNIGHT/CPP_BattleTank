@@ -26,7 +26,6 @@ private:
 	FCollisionObjectQueryParams CollisionObjectParam;
 
 	void BeginPlay() override;
-	void Tick(float DeltaTime) override;
-	void AimTowardsPlayer();
 	bool GetSightRayLocation(FVector& OutHitLocation);
+	void Tick(float DeltaTime) override;
 };
