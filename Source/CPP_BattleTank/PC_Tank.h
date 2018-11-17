@@ -18,6 +18,11 @@ class CPP_BATTLETANK_API APC_Tank : public APlayerController
 {
 	GENERATED_BODY()
 	
+
+protected:
+
+
+
 public:
 	
 	AP_Tank* GetControlledTank() const;
