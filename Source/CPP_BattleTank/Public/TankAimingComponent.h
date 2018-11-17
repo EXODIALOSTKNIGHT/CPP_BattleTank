@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/Engine.h"
+#include "Components/StaticMeshComponent.h"
 #include "TankAimingComponent.generated.h"
 
 
@@ -16,10 +17,11 @@ class CPP_BATTLETANK_API UTankAimingComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
-
+	void SetBarrelComponent(UStaticMeshComponent* Barrel);
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	UStaticMeshComponent* BarrelToSet = nullptr;
 
 public:	
 	// Called every frame

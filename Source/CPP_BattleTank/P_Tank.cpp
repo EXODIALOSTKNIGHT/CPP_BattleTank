@@ -23,6 +23,11 @@ void AP_Tank::AimAt(FVector HitLocation)
 	TankAimingComponent->AimAt(HitLocation);
 }
 
+void AP_Tank::SetBarrelReference(UStaticMeshComponent* BarrelToset)
+{
+	TankAimingComponent->SetBarrelComponent(BarrelToset);
+}
+
 // Called every frame
 void AP_Tank::Tick(float DeltaTime)
 {

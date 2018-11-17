@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Engine/Engine.h"
 #include "TankAimingComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "P_Tank.generated.h"
 
 UCLASS()
@@ -25,6 +26,9 @@ protected:
 public:
 
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToset);
 private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
