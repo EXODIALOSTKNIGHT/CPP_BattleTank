@@ -24,6 +24,7 @@ private:
 	FVector StartLineTrace;
 	FVector EndLineTrace;
 	FCollisionObjectQueryParams CollisionObjectParam;
+	float LaunchSpeed = 4000;
 
 	void BeginPlay() override;
 	bool GetSightRayLocation(FVector& OutHitLocation);

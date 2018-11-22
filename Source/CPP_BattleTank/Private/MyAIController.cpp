@@ -30,6 +30,7 @@ bool AMyAIController::GetSightRayLocation(FVector& OutHitLocation)
 
 void AMyAIController::Tick(float DeltaTime)
 {
+
 	Super::Tick(DeltaTime);
-	GetTankController()->AimAt(GetPlayerTank()->GetActorLocation());
+	//GetTankController()->AimAt(GetPlayerTank()->GetActorLocation(),LaunchSpeed);
 }

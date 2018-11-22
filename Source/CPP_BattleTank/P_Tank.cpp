@@ -18,9 +18,9 @@ void AP_Tank::BeginPlay()
 	
 }
 
-void AP_Tank::AimAt(FVector HitLocation)
+void AP_Tank::AimAt(FVector HitLocation, float LauchSpeed)
 {
-	TankAimingComponent->AimAt(HitLocation);
+	TankAimingComponent->AimAt(HitLocation, LauchSpeed);
 }
 
 void AP_Tank::SetBarrelReference(UStaticMeshComponent* BarrelToset)

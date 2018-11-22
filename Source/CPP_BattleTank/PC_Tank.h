@@ -27,7 +27,6 @@ public:
 	
 	AP_Tank* GetControlledTank() const;
 	void BeginPlay() override;
-	AP_Tank* GetPlayerTank();
 	FVector StartLineTrace;
 	FVector EndLineTrace;
 	FCollisionObjectQueryParams CollisionObjectParam;
@@ -45,4 +44,8 @@ public:
 	float CrossHairYLocation = 0.33;
 	UPROPERTY(EditAnywhere)
 		float LineTraceRange = 100000;
+
+	float LaunchSpeed = 0;
+
+	
 };

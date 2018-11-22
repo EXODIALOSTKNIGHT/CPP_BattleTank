@@ -36,13 +36,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation)
+void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (BarrelToSet != nullptr)
 	{
-		auto OurTankName = GetOwner()->GetName();
-		auto BarrelLocation = BarrelToSet->GetComponentLocation().ToString();
-		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("%s is aiming at %s from %s"), *OurTankName, *HitLocation.ToString(), *BarrelLocation));
+		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("firing at %f "), LaunchSpeed));
 	}
 	
 }

@@ -32,9 +32,11 @@ void APC_Tank::AimTowardsPlayer()
 {
 
 	FVector HitLocation;
+	
 	if (GetSightRayLocation(HitLocation))
 	{
-		GetControlledTank()->AimAt(HitLocation);
+		LaunchSpeed = GetControlledTank()->LaunchSpeed;
+		GetControlledTank()->AimAt(HitLocation,LaunchSpeed);
 	}
 
 }
