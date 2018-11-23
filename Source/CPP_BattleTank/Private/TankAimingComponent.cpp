@@ -38,10 +38,18 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	if (BarrelToSet != nullptr)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("firing at %f "), LaunchSpeed));
-	}
+	if (!BarrelToSet){return;}
+
+		FVector OutLaunchVelocity;
+		FVector StartLocation = BarrelToSet->GetSocketLocation(FName("Projectile"));
+
+		if (UGameplayStatics::SuggestProjectileVelocity
+		(this, OutLaunchVelocity, StartLocation, HitLocation, LaunchSpeed, false, 0, 0,ESuggestProjVelocityTraceOption::DoNotTrace))
+		{
+			auto AimDirection = OutLaunchVelocity.GetSafeNormal();
+			GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("Aiming at %s "), *AimDirection.ToString()));
+			DrawDebugLine(GetWorld(),AimDirection, OutLaunchVelocity,FColor::Yellow,false,-1.f,0,20.f);
+		}
 	
 }
 
