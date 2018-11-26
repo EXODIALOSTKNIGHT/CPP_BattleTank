@@ -42,14 +42,24 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 		FVector OutLaunchVelocity;
 		FVector StartLocation = BarrelToSet->GetSocketLocation(FName("Projectile"));
+		bool IsHaveAimingDirection = UGameplayStatics::SuggestProjectileVelocity(this, OutLaunchVelocity, StartLocation, HitLocation, LaunchSpeed, ESuggestProjVelocityTraceOption::TraceFullPath);
 
-		if (UGameplayStatics::SuggestProjectileVelocity
-		(this, OutLaunchVelocity, StartLocation, HitLocation, LaunchSpeed, false, 0, 0,ESuggestProjVelocityTraceOption::DoNotTrace))
+		if (IsHaveAimingDirection)
 		{
 			auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-			GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("Aiming at %s "), *AimDirection.ToString()));
-			DrawDebugLine(GetWorld(),AimDirection, OutLaunchVelocity,FColor::Yellow,false,-1.f,0,20.f);
+			MoveBarrel(AimDirection);
+			
 		}
 	
+}
+
+void UTankAimingComponent::MoveBarrel(FVector AimDirection)
+{
+	auto BarrelRotation = BarrelToSet->GetForwardVector().Rotation();
+	auto AimRotation = AimDirection.Rotation();
+	auto DeltaRotation = AimRotation - BarrelRotation;
+
+	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("Aiming at %s "), *AimRotation.ToString()));
+	//set barrel component rotation base on camera view with delay
 }
 
