@@ -13,7 +13,7 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-void UTankAimingComponent::SetBarrelComponent(UStaticMeshComponent* Barrel)
+void UTankAimingComponent::SetBarrelComponent(UTankBarrel* Barrel)
 {
 	BarrelToSet = Barrel;
 }
@@ -59,7 +59,6 @@ void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 	auto AimRotation = AimDirection.Rotation();
 	auto DeltaRotation = AimRotation - BarrelRotation;
 
-	GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Yellow, FString::Printf(TEXT("Aiming at %s "), *AimRotation.ToString()));
-	//set barrel component rotation base on camera view with delay
+	BarrelToSet->Elevate(5);
 }
 

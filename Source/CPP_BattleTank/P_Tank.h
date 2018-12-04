@@ -9,6 +9,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "P_Tank.generated.h"
 
+class UTankBarrel;
+
 UCLASS()
 class CPP_BATTLETANK_API AP_Tank : public APawn
 {
@@ -28,7 +30,7 @@ public:
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToset);
+	void SetBarrelReference(UTankBarrel* BarrelToset);
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float LaunchSpeed = 3000.f;
